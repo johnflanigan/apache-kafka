@@ -1,0 +1,61 @@
+# kafka-topics
+
+Create
+
+kafka-topics --bootstrap-server localhost:9092 --topic first_topic --create
+
+kafka-topics --bootstrap-server localhost:9092 --topic first_topic --create --partitions 3
+
+kafka-topics --bootstrap-server localhost:9092 --topic first_topic --create --partitions 3
+
+kafka-topics --bootstrap-server localhost:9092 --topic first_topic --create --partitions 3 --replication-factor 1
+
+List
+
+kafka-topics --bootstrap-server localhost:9092 --list
+
+Describe
+
+kafka-topics --bootstrap-server localhost:9092 --topic first_topic --describe
+
+Delete
+
+kafka-topics --bootstrap-server localhost:9092 --topic second_topic --delete
+
+# kafka-console-producer
+
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic
+
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --producer-property acks=all
+
+kafka-console-producer --broker-list 127.0.0.1:9092 --topic new_topic
+
+kafka-topics --zookeeper 127.0.0.1:2181 --list
+
+kafka-topics --zookeeper 127.0.0.1:2181 --topic new_topic --describe
+
+Recommendation: always create a topic before hand. Otherwise, it will be created with defaults which are not good.
+
+# kafka-console-consumer
+
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic
+
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning
+
+
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning
+
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --group my-first-application
+
+# kafka-consumer-groups
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-second-application
+
+# Offset reset
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --to-earliest --execute --topic first_topic
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -2 --execute --topic first_topic
+
